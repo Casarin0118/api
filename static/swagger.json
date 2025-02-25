@@ -1,0 +1,117 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API de Tarefas",
+    "description": "Documentação da API de Tarefas com Swagger",
+    "version": "1.0.0"
+  },
+  "host": "127.0.0.1:5000",
+  "schemes": ["http"],
+  "paths": {
+    "/tasks": {
+      "get": {
+        "summary": "Retorna todas as tarefas",
+        "responses": {
+          "200": {
+            "description": "Lista de tarefas"
+          }
+        }
+      },
+      "post": {
+        "summary": "Cria uma nova tarefa",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "titulo": { "type": "string" },
+                "descricao": { "type": "string" },
+                "status": { "type": "string" },
+                "prioridade": { "type": "string" },
+                "data_criacao": { "type": "string" },
+                "responsavel": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Tarefa criada com sucesso"
+          }
+        }
+      }
+    },
+    "/tasks/{task_id}": {
+      "get": {
+        "summary": "Retorna uma tarefa pelo ID",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tarefa encontrada"
+          },
+          "404": {
+            "description": "Tarefa não encontrada"
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualiza uma tarefa existente",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "titulo": { "type": "string" },
+                "descricao": { "type": "string" },
+                "status": { "type": "string" },
+                "prioridade": { "type": "string" },
+                "data_criacao": { "type": "string" },
+                "responsavel": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tarefa atualizada com sucesso"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Exclui uma tarefa",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tarefa excluída com sucesso"
+          }
+        }
+      }
+    }
+  }
+}
